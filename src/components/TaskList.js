@@ -1,9 +1,18 @@
 import React from "react";
+import Task from "./Task";
 
-function TaskList() {
+function TaskList({ tasks, onDeleteTask }) {
+  console.log("Rendering TaskList with tasks:", tasks); // <-- Add here
+  
   return (
     <div className="tasks">
-      {/* display a list of tasks using Task component */}
+        {tasks.map((task, index) => (
+          <Task 
+            key={task.id || `task-${index}`}  // Fallback to index if no id
+            task={task}
+            onDelete={onDeleteTask}
+          />
+        ))}
     </div>
   );
 }
